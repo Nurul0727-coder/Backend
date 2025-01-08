@@ -1,5 +1,5 @@
-const express= require('express')
-const fs = require("node:fs");
+import express from 'express';  //const express = require('express');
+import fs from 'fs';  //const fs = require('node:fs');
 const app= express ();
 const port=3001
 ;
@@ -14,8 +14,16 @@ app.get("/movies",(req,res)=>{
 });
 
 app.get("/movies/create", (req, res)=>{
-    console.log(req.query);
-
+    // console.log(req.query);
+ app.get("/movies/:id",findById);
+ function findById(req,res){
+    // console.log(req.params.movieI
+    const movies =findAllMovies();
+    const movie = movies.find((movie)=> movie.id === Number (movieId));
+    // req.json({message:"Success"});
+    req.json(movie);
+ }
+app.get('movies/:id',findById);
     //const name= req.query.name;
     const {name}=req.query
 
